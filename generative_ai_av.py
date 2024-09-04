@@ -1,7 +1,7 @@
 
 """ an inspiration from : https://www.analyticsvidhya.com/blog/2023/07/generative-ai-with-vaes-gans-transformers/ """
 
-### VAE
+# VAE
 
 import tensorflow as tf
 from tensorflow import keras
@@ -61,7 +61,7 @@ vae.fit(x_train, epochs=epochs, batch_size=batch_size)
 
 
 
-### Generative Adversarial Networks (GANs)
+# Generative Adversarial Networks (GANs)
 
 """
 The generator aims to produce realistic samples, while the discriminator distinguishes between real and generated samples.
@@ -93,7 +93,7 @@ discriminator = keras.Sequential([
     layers.Dense(1, activation="sigmoid")
 ])
 
-"""The GAN model is defined by combining the generator and discriminator networks. 
+""" The GAN model is defined by combining the generator and discriminator networks. 
 The discriminator is compiled separately with binary cross-entropy loss and the Adam optimizer. 
 During GAN training, the discriminator is frozen to prevent its weights from being updated. 
 The GAN model is then compiled with binary cross-entropy loss and the Adam optimizer."""
@@ -110,7 +110,7 @@ discriminator.trainable = False
 # Compile the GAN
 gan.compile(loss="binary_crossentropy", optimizer="adam")
 
-"""Training the GAN
+""" Training the GAN
 In the training loop, the discriminator and generator are trained separately using batches of real and generated data, 
 and the losses are printed for each epoch to monitor the training progress.
 """
@@ -139,13 +139,13 @@ for epoch in range(epochs):
 
 
 
-### Transformers and Autoregressive Models
+# Transformers and Autoregressive Models
 
 """
 Autoregressive models, such as the GPT series, generate outputs sequentially, conditioning each step on previous outputs.
 """
 
-"""It defines a Transformer model using the Keras Sequential API, which includes an embedding layer, a Transformer layer, 
+""" It defines a Transformer model using the Keras Sequential API, which includes an embedding layer, a Transformer layer, 
 and a dense layer with a softmax activation. 
 This model is designed for tasks such as sequence-to-sequence language translation or natural language processing"""
 
