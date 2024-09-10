@@ -1,19 +1,24 @@
 
 """ an inspiration from : https://www.analyticsvidhya.com/blog/2023/07/generative-ai-with-vaes-gans-transformers/ """
 
-# VAE
+#################################################################################
+#################################################################################
+
+# VAE (Variational Autoencoders)
 
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
 # Define the encoder network
+
 encoder_inputs = keras.Input(shape=(input_dim,))
 x = layers.Dense(hidden_dim, activation="relu")(encoder_inputs)
 z_mean = layers.Dense(latent_dim)(x)
 z_log_var = layers.Dense(latent_dim)(x)
 
 # Define the decoder network
+
 decoder_inputs = keras.Input(shape=(latent_dim,))
 x = layers.Dense(hidden_dim, activation="relu")(decoder_inputs)
 decoder_outputs = layers.Dense(output_dim, activation="sigmoid")(x)
@@ -31,7 +36,6 @@ def sampling(args):
     return z_mean + tf.exp(0.5 * z_log_var) * epsilon
 
 z = layers.Lambda(sampling)([z_mean, z_log_var])
-
 
 
 """ Define Loss Function
@@ -59,14 +63,14 @@ vae.add_loss(vae_loss)
 vae.compile(optimizer="adam")
 vae.fit(x_train, epochs=epochs, batch_size=batch_size)
 
-
+######################################################################################
+######################################################################################
 
 # Generative Adversarial Networks (GANs)
 
 """
 The generator aims to produce realistic samples, while the discriminator distinguishes between real and generated samples.
 """
-
 
 """ A generator network, represented by the ‘generator’ variable, which takes a latent space input and 
 transforms it through a series of dense layers with ReLU activations to generate synthetic data samples.
@@ -138,6 +142,8 @@ for epoch in range(epochs):
     print(f"Epoch: {epoch+1}, Disc Loss: {discriminator_loss}, GAN Loss: {gan_loss}")
 
 
+#########################################################################################
+#########################################################################################
 
 # Transformers and Autoregressive Models
 
